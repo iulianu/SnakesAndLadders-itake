@@ -3,7 +3,7 @@ package com.mozaicworks;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class GameTest {
+public class GameExploratoryTest {
 
     @Test
     public void aNormalPlay() {
