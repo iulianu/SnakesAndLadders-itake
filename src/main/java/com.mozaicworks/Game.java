@@ -5,6 +5,15 @@ import java.util.Map;
 public class Game {
 
     public int[] p = new int[4];
+    private Integer winner = null;
+
+    public boolean isOver() {
+        return this.winner != null;
+    }
+
+    public void markGameOver(int winner) {
+        this.winner = winner;
+    }
 
     public static Game gameInstance = null;
 
@@ -33,6 +42,12 @@ public class Game {
     }
 
     public String playForP(int i, int diceRoll) {
+        if(isOver()) {
+            return "Game over! Player " + winner + " is the winner!";
+            // Refuse to play any further.
+            // You must create a new game.
+        }
+
         int imlucky = 0;
         int s = diceRoll;
 
@@ -95,7 +110,8 @@ public class Game {
 
         String res = "";
 
-        if (p[i] == 36) {
+        if (p[i] >= 36) {
+            markGameOver(i);
             res = res + "Game over! Player " + i + " is the winner!";
         } else {
             int none = 0;

@@ -36,4 +36,29 @@ public class GameExploratoryTest {
                 + "<br></br>player 2 is on 1square, "
                 + "<br></br>player 3 is on 1square, <br></br>", game.status());
     }
+
+    @Test
+    public void gameShouldFinish() {
+        com.mozaicworks.Game game = new com.mozaicworks.Game();
+        game.playForP(1, 12);
+        game.playForP(1, 7);
+        game.playForP(1, 12);
+        String result = game.playForP(1, 12);
+        /* After these rolls, this game is guaranteed to be over */
+        assertEquals("Game over! Player 1 is the winner!", result);
+    }
+
+    @Test
+    public void movesShouldNotBePossibleAfterGameIsOver() {
+        com.mozaicworks.Game game = new com.mozaicworks.Game();
+        game.playForP(1, 12);
+        game.playForP(1, 7);
+        game.playForP(1, 12);
+        game.playForP(1, 12);
+        /* After these rolls, this game is guaranteed to be over */
+        String result = game.playForP(2, 12);
+        // Even though Player 2 is still in a legal position, this game should no
+        // longer be playable.
+        assertEquals("Game over! Player 1 is the winner!", result);
+    }
 }
