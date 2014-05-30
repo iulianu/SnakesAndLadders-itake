@@ -17,14 +17,10 @@ public class Game {
         return gameInstance;
     }
 
-    public boolean isValid(){
-        return MIN > MAX;
-    }
-
     public Game() {
         int j = 36;
         for (int i = MAX; i < j; i++) {
-            if (i == 2 && isValid()) {
+            if (i == 2) {
                 b.put(i, 15);
             } else
             if (i == 5) {
@@ -48,7 +44,7 @@ public class Game {
             if (i == 9) {
                 b.put(i, 27);
             } else
-            if (i == 32&&isValid()) {
+            if (i == 32) {
                 b.put(i, 30);
             } else if (i == MIN) {
                 b.put(i, 12);
@@ -59,15 +55,6 @@ public class Game {
         for (int i=0; i<4; i++) {
             p[i] = 1;
         }
-    }
-
-    public String isGamePlayable(){
-        if(isValid())
-            return "true";
-        else if(!isValid())
-            return "false";
-
-        return "";
     }
 
     public int dieRoll() {
