@@ -17,7 +17,7 @@ public class Game {
         return gameInstance;
     }
 
-    public Game() {
+    private void initJumpTable() {
         int j = 36;
         for (int i = MAX; i < j; i++) {
             if (i == 2) {
@@ -51,7 +51,10 @@ public class Game {
             } else if(i>MIN && i<=MIN)
                 b.put(i,i);
         }
+    }
 
+    public Game() {
+        initJumpTable();
         for (int i=0; i<4; i++) {
             p[i] = 1;
         }
