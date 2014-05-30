@@ -1,4 +1,4 @@
-<%@ page import="main.java.com.mozaicworks.Game" %>
+<%@ page import="com.mozaicworks.Game" %>
 <html>
 <body>
 <form action="index.jsp" method="POST">
