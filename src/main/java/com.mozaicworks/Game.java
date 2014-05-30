@@ -1,4 +1,4 @@
-package main.java.com.mozaicworks;
+package com.mozaicworks;
 import java.util.HashMap;
 
 public class Game {
@@ -74,12 +74,16 @@ public class Game {
         return (int)(Math.random() * 6) + 1;
     }
 
+    public int rollTwoDice() {
+        int d1 = dieRoll();
+        int dTwo = dieRoll();
+        return d1 + dTwo;
+    }
+
     public String play(String player) {
         System.out.println("palyer " + player);
         int i = Integer.parseInt(player);
-        int d1 = dieRoll();
-        int dTwo = dieRoll();
-        int s = d1 + dTwo;
+        int s = rollTwoDice();
 
         int imlucky = 0;
 
@@ -165,9 +169,7 @@ public class Game {
 
 
         i = 2;
-        d1 = dieRoll();
-        dTwo = dieRoll();
-        s = d1 + dTwo;
+        s = rollTwoDice();
 
         imlucky = 0;
 
