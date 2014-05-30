@@ -4,9 +4,6 @@ import java.util.Map;
 
 public class Game {
 
-    public static final int MAX = 1;
-    public static final int MIN = 34;
-    public Map<Integer, Integer> jumpTable;
     public int[] p = new int[4];
 
     public static Game gameInstance = null;
@@ -18,46 +15,8 @@ public class Game {
         return gameInstance;
     }
 
-    private Map<Integer, Integer> defaultJumpTable() {
-        Map<Integer, Integer> b = new HashMap<Integer, Integer>();
-        int j = 36;
-        for (int i = MAX; i < j; i++) {
-            if (i == 2) {
-                b.put(i, 15);
-            } else
-            if (i == 5) {
-                b.put(i, 7);
-            } else
-            if (i == 18) {
-                b.put(i, 29);
-            } else
-            if (i == 25) {
-                b.put(i, 35);
-            } else
-            if (i == 17) {
-                b.put(i, 4);
-            } else
-            if (i == 20) {
-                b.put(i, 6);
-            } else
-            if (i == 24) {
-                b.put(i, 16);
-            } else
-            if (i == 9) {
-                b.put(i, 27);
-            } else
-            if (i == 32) {
-                b.put(i, 30);
-            } else if (i == MIN) {
-                b.put(i, 12);
-            } else if(i>MIN && i<=MIN)
-                b.put(i,i);
-        }
-        return b;
-    }
 
     public Game() {
-        jumpTable = defaultJumpTable();
         for (int i=0; i<4; i++) {
             p[i] = 1;
         }

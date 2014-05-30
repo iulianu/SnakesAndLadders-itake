@@ -26,4 +26,14 @@ public class GameTest {
         String result = game.playForP(1, 5);
         assertEquals("HaHaHa!!Snake bite!Sorry!You 1 are on square 4<br></br>", result);
     }
+
+    @Test
+    public void theStatusMessage() {
+        com.mozaicworks.Game game = new com.mozaicworks.Game();
+        game.playForP(1, 2);
+        assertEquals("Players positions: player 0 is on 1square, "
+                + "<br></br>player 1 is on 3square, "
+                + "<br></br>player 2 is on 1square, "
+                + "<br></br>player 3 is on 1square, <br></br>", game.status());
+    }
 }
