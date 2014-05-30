@@ -1,10 +1,8 @@
 package com.mozaicworks;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Game {
 
-    public int[] p = new int[4];
+    public int[] positions = new int[4];
     private Integer winner = null;
 
     public boolean isOver() {
@@ -27,7 +25,7 @@ public class Game {
 
     public Game() {
         for (int i=0; i<4; i++) {
-            p[i] = 1;
+            positions[i] = 1;
         }
     }
 
@@ -41,7 +39,7 @@ public class Game {
         return d1 + dTwo;
     }
 
-    public String playForP(int i, int diceRoll) {
+    public String applyPlayerMove(int player, int dice) {
         if(isOver()) {
             return "Game over! Player " + winner + " is the winner!";
             // Refuse to play any further.
@@ -49,70 +47,69 @@ public class Game {
         }
 
         int imlucky = 0;
-        int s = diceRoll;
 
-        switch(p[i]+s){
+        switch(positions[player]+dice){
             case 2: {
-                p[i] = 15;
+                positions[player] = 15;
                 imlucky = 1;
                 break;
             }
             case 34: {
-                p[i] = 12;
+                positions[player] = 12;
                 imlucky = -1;
                 break;
             }
             case 5: {
-                p[i] = 7;
+                positions[player] = 7;
                 imlucky = 1;
                 break;
             }
             case 9: {
-                p[i] = 27;
+                positions[player] = 27;
                 imlucky = 1;
                 break;
             }
             case 25: {
-                p[i] = 35;
+                positions[player] = 35;
                 imlucky = 1;
                 break;
             }
             case 18: {
-                p[i] = 29;
+                positions[player] = 29;
                 imlucky = 1;
                 break;
             }
             case 17: {
-                p[i] = 4;
+                positions[player] = 4;
                 imlucky = -1;
                 break;
             }
             case 20: {
-                p[i] = 6;
+                positions[player] = 6;
                 imlucky = -1;
                 break;
             }
             case 24: {
-                p[i] = 16;
+                positions[player] = 16;
                 imlucky = -1;
                 break;
             }
             case 32: {
-                p[i] = 30;
+                positions[player] = 30;
                 imlucky = -1;
                 break;
             }
             default: {
-                p[i] = p[i]+s;
+                positions[player] = positions[player]+dice;
                 break;
             }
         }
 
         String res = "";
 
-        if (p[i] >= 36) {
-            markGameOver(i);
-            res = res + "Game over! Player " + i + " is the winner!";
+        if (positions[player] >= 36) {
+            markGameOver(player);
+            res = res + "Game over! Player " + player + " is the winner!";
         } else {
             int none = 0;
             if (imlucky == none){
@@ -124,7 +121,7 @@ public class Game {
             if (imlucky == -1) {
                 res = res + "HaHaHa!!Snake bite!Sorry!";
             }
-            res = res + "You " + i + " are on square " + p[i];
+            res = res + "You " + player + " are on square " + positions[player];
             res = res + "<br></br>";
         }
 
@@ -133,15 +130,15 @@ public class Game {
 
     public String play(String player) {
         System.out.println("palyer " + player);
-        String res = playForP(Integer.parseInt(player), rollTwoDice());
-        res = res + playForP(2, rollTwoDice());
+        String res = applyPlayerMove(Integer.parseInt(player), rollTwoDice());
+        res = res + applyPlayerMove(2, rollTwoDice());
         return res;
     }
 
     public String status() {
         String pos = "Players positions: ";
         for (int i=0; i<4; i++){
-            pos = pos + "player " + i + " is on " + p[i] + "square, ";
+            pos = pos + "player " + i + " is on " + positions[i] + "square, ";
             pos = pos + "<br></br>";
         }
         return pos;
