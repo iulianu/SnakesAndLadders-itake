@@ -70,11 +70,15 @@ public class Game {
         return "";
     }
 
+    public int dieRoll() {
+        return (int)(Math.random() * 6) + 1;
+    }
+
     public String play(String player) {
         System.out.println("palyer " + player);
         int i = Integer.parseInt(player);
-        int d1 = (int)(Math.random()*6 )+1 ;
-        int dTwo = (int)(Math.random()*6 )+1 ;
+        int d1 = dieRoll();
+        int dTwo = dieRoll();
         int s = d1 + dTwo;
 
         int imlucky = 0;
@@ -161,8 +165,8 @@ public class Game {
 
 
         i = 2;
-        d1 = (int)(Math.random()*6 )+1 ;
-        dTwo = (int)(Math.random()*6 )+1 ;
+        d1 = dieRoll();
+        dTwo = dieRoll();
         s = d1 + dTwo;
 
         imlucky = 0;
