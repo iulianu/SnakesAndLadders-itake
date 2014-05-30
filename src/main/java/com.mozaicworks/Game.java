@@ -1,11 +1,12 @@
 package com.mozaicworks;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
 
     public static final int MAX = 1;
     public static final int MIN = 34;
-    public HashMap b = new HashMap();
+    public Map<Integer, Integer> jumpTable;
     public int[] p = new int[4];
 
     public static Game gameInstance = null;
@@ -17,7 +18,8 @@ public class Game {
         return gameInstance;
     }
 
-    private void initJumpTable() {
+    private Map<Integer, Integer> defaultJumpTable() {
+        Map<Integer, Integer> b = new HashMap<Integer, Integer>();
         int j = 36;
         for (int i = MAX; i < j; i++) {
             if (i == 2) {
@@ -51,10 +53,11 @@ public class Game {
             } else if(i>MIN && i<=MIN)
                 b.put(i,i);
         }
+        return b;
     }
 
     public Game() {
-        initJumpTable();
+        jumpTable = defaultJumpTable();
         for (int i=0; i<4; i++) {
             p[i] = 1;
         }
@@ -70,12 +73,9 @@ public class Game {
         return d1 + dTwo;
     }
 
-    public String play(String player) {
-        System.out.println("palyer " + player);
-        int i = Integer.parseInt(player);
-        int s = rollTwoDice();
-
+    public String playForP(int i, int diceRoll) {
         int imlucky = 0;
+        int s = diceRoll;
 
         switch(p[i]+s){
             case 2: {
@@ -153,89 +153,13 @@ public class Game {
             res = res + "<br></br>";
         }
 
+        return res;
+    }
 
-
-
-
-
-        i = 2;
-        s = rollTwoDice();
-
-        imlucky = 0;
-
-        switch(p[i]+s){
-            case 2: {
-                p[i] = 15;
-                imlucky = 1;
-                break;
-            }
-            case 34: {
-                p[i] = 12;
-                imlucky = -1;
-                break;
-            }
-            case 5: {
-                p[i] = 7;
-                imlucky = 1;
-                break;
-            }
-            case 9: {
-                p[i] = 27;
-                imlucky = 1;
-                break;
-            }
-            case 25: {
-                p[i] = 35;
-                imlucky = 1;
-                break;
-            }
-            case 18: {
-                p[i] = 29;
-                imlucky = 1;
-                break;
-            }
-            case 17: {
-                p[i] = 4;
-                imlucky = -1;
-                break;
-            }
-            case 20: {
-                p[i] = 6;
-                imlucky = -1;
-                break;
-            }
-            case 24: {
-                p[i] = 16;
-                imlucky = -1;
-                break;
-            }
-            case 32: {
-                p[i] = 30;
-                imlucky = -1;
-                break;
-            }
-            default: {
-                p[i] = p[i]+s;
-                break;
-            }
-        }
-
-        if (p[i] == 36) {
-            res = res + "Game over! Player " + i + " is the winner!";
-        } else {
-            int none = 0;
-            if (imlucky == none){
-                res = res + "Normal square reached by computer!";
-            }
-            if (imlucky == 1) {
-                res = res + "Latter reached!You lucky computer player!";
-            }
-            if (imlucky == -1) {
-                res = res + "HaHaHa!!Snake bite!Sorry computer palyer!";
-            }
-            res = res + "You computer " + i + " are on square " + p[i];
-        }
-
+    public String play(String player) {
+        System.out.println("palyer " + player);
+        String res = playForP(Integer.parseInt(player), rollTwoDice());
+        res = res + playForP(2, rollTwoDice());
         return res;
     }
 
