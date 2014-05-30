@@ -7,21 +7,21 @@ public class GameExploratoryTest {
 
     @Test
     public void aNormalPlay() {
-        com.mozaicworks.Game game = new com.mozaicworks.Game();
+        com.mozaicworks.GameController game = new com.mozaicworks.GameController();
         String result = game.applyPlayerMove(1, 2);
         assertEquals("Normal square reached!You 1 are on square 3<br></br>", result);
     }
 
     @Test
     public void aLadderPlay() {
-        com.mozaicworks.Game game = new com.mozaicworks.Game();
+        com.mozaicworks.GameController game = new com.mozaicworks.GameController();
         String result = game.applyPlayerMove(1, 4);
         assertEquals("Latter reached!You lucky player!You 1 are on square 7<br></br>", result);
     }
 
     @Test
     public void aSnakeBite() {
-        com.mozaicworks.Game game = new com.mozaicworks.Game();
+        com.mozaicworks.GameController game = new com.mozaicworks.GameController();
         game.applyPlayerMove(1, 11);
         String result = game.applyPlayerMove(1, 5);
         assertEquals("HaHaHa!!Snake bite!Sorry!You 1 are on square 4<br></br>", result);
@@ -29,7 +29,7 @@ public class GameExploratoryTest {
 
     @Test
     public void theStatusMessage() {
-        com.mozaicworks.Game game = new com.mozaicworks.Game();
+        com.mozaicworks.GameController game = new com.mozaicworks.GameController();
         game.applyPlayerMove(1, 2);
         assertEquals("Players positions: player 0 is on 1square, "
                 + "<br></br>player 1 is on 3square, "
@@ -39,7 +39,7 @@ public class GameExploratoryTest {
 
     @Test
     public void gameShouldFinish() {
-        com.mozaicworks.Game game = new com.mozaicworks.Game();
+        com.mozaicworks.GameController game = new com.mozaicworks.GameController();
         game.applyPlayerMove(1, 12);
         game.applyPlayerMove(1, 7);
         game.applyPlayerMove(1, 12);
@@ -50,7 +50,7 @@ public class GameExploratoryTest {
 
     @Test
     public void movesShouldNotBePossibleAfterGameIsOver() {
-        com.mozaicworks.Game game = new com.mozaicworks.Game();
+        com.mozaicworks.GameController game = new com.mozaicworks.GameController();
         game.applyPlayerMove(1, 12);
         game.applyPlayerMove(1, 7);
         game.applyPlayerMove(1, 12);

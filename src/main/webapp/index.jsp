@@ -1,4 +1,4 @@
-<%@ page import="com.mozaicworks.Game" %>
+<%@ page import="com.mozaicworks.GameController" %>
 <html>
 <body>
 <form action="index.jsp" method="POST">
@@ -8,9 +8,9 @@
         <input type="submit" id="rollTheDice" value="Roll the dice"/>
     </div>
     <div style="margin-bottom: 20px;" class="playerStatus">
-        <%=Game.aGame().play("1")%>
+        <%=GameController.aGameController().play("1")%>
     </div>
-    <h4 style="margin-bottom: 20px;"><%=Game.aGame().status()%></h4>
+    <h4 style="margin-bottom: 20px;"><%=GameController.aGameController().status()%></h4>
 </form>
 </body>
 </html>
